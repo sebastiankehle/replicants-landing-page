@@ -1,0 +1,236 @@
+# Next.js 15 & React 19 Development Guidelines
+
+## Core Technologies
+
+- Next.js 15 App Router
+- React 19
+- TypeScript
+- Shadcn UI / Radix UI
+- Tailwind CSS
+- PNPM Package Manager
+- Three.js / React Three Fiber
+- Framer Motion
+- next-themes
+- react-tweet
+- Lucide Icons
+- Sonner (Toast notifications)
+- React Hook Form
+- Zod validation
+- Gray Matter (Blog content)
+- Remark (Markdown processing)
+
+## Code Style & Structure
+
+### Component Patterns
+
+- Use functional components with TypeScript interfaces
+- Avoid classes; prefer functional and declarative patterns
+- One component per file with named exports
+- Structure: exports, subcomponents, helpers, types, static content
+- Use 'use client' directive only when necessary
+- Implement motion/animations with Framer Motion
+- Prefer controlled components with explicit props interfaces
+- Follow atomic design principles:
+  - UI primitives in components/ui/
+  - Complex components in feature-specific directories
+  - Page sections in components/sections/
+- Use InView component for scroll animations
+- Implement proper cleanup in Three.js components
+- Implement dictionary-based props for i18n
+
+### TypeScript Usage
+
+- Prefer interfaces over types
+- Use maps instead of enums
+- Strong typing with explicit interfaces
+- Avoid 'any' and 'unknown' types
+- Type dictionary objects for translations
+- Use type-safe event handlers
+- Use PostMetadata and PostData interfaces for blog content
+- Implement strong typing for dictionary objects
+- Type-safe route parameters
+
+### Naming Conventions
+
+- Directories: lowercase with dashes (e.g., auth-wizard)
+- Files: lowercase with dashes (e.g., auth-wizard.tsx)
+- Components: PascalCase
+- Functions: camelCase with verb prefixes (e.g., handleSubmit)
+- Variables: descriptive with auxiliary verbs (e.g., isLoading)
+- Translation keys: nested dot notation (e.g., hero.title.main)
+
+### File Structure
+
+/src
+├── app/ # Next.js App Router pages
+│ ├── [lang]/ # Language-specific routes
+│ ├── (legal)/ # Legal pages
+│ ├── api/ # API routes
+├── components/
+│ ├── animations/ # Animation components
+│ ├── auth/ # Authentication components
+│ ├── cards/ # Dashboard cards
+│ ├── charts/ # Data visualization
+│ ├── common/ # Shared components
+│ ├── dialogs/ # Modal dialogs
+│ ├── drawers/ # Drawer components
+│ ├── forms/ # Form components
+│ ├── icons/ # Icon components
+│ ├── layout/ # Layout components
+│ ├── sections/ # Page sections
+│ └── ui/ # Base UI components
+├── hooks/ # Custom React hooks
+├── lib/ # Utilities and services
+├── messages/ # Translation files
+├── providers/ # React context providers
+├── stores/ # State management
+├── styles/ # Global styles
+└── types/ # TypeScript types
+
+## UI & Styling
+
+- Use Shadcn UI components with Radix UI primitives
+- Tailwind CSS for styling (mobile-first approach)
+- Maintain consistent component interfaces
+- Follow accessibility best practices
+- Use CSS variables for theming
+- Implement responsive design patterns
+- Support dark/light mode via next-themes
+- Shadow styles:
+  - Light: shadow-[2px_4px_12px_rgba(0,0,0,0.08)]
+  - Dark: shadow-[2px_4px_12px_rgba(0,0,0,0.3)]
+- Standard border radius: rounded-3xl
+- Consistent spacing patterns:
+  - Section padding: py-24
+  - Grid gap: gap-8
+- Typography:
+  - Headings: text-xl font-semibold sm:text-2xl
+  - Body: text-base text-muted-foreground
+
+## Animation & Interactive Elements
+
+- Use Framer Motion for component animations
+- Implement InView components for scroll animations
+- Three.js for 3D backgrounds and effects
+- Optimize performance with:
+  - useCallback for animation functions
+  - RAF for continuous animations
+  - Proper cleanup in useEffect
+- Implement loading states and transitions
+
+## Performance Guidelines
+
+- Default to React Server Components
+- Minimize client-side JavaScript:
+  - Limit 'use client' directives
+  - Reduce useEffect and setState usage
+  - Use Server Actions where possible
+- Image optimization:
+  - WebP format
+  - Include size attributes
+  - Implement lazy loading
+- Dynamic imports for non-critical components
+- Wrap client components in Suspense
+- Optimize Three.js renders
+- Efficient animation patterns
+
+## Internationalization
+
+- Support multiple languages (en, de)
+- Use language-specific route segments
+- Maintain separate message files
+- Dictionary-based translations
+- Type-safe translation keys
+- Server-side language detection
+- Language switcher component
+
+## State Management
+
+- URL state: Use 'nuqs' for search parameters
+- Server state: Prefer Server Components
+- Client state: Minimal, only when necessary
+- Forms: React Hook Form with Zod validation
+- Theme state: next-themes
+- Mobile menu state: zustand
+
+## Error Handling & Loading States
+
+- Implement fallback components
+- Use error boundaries
+- Provide skeleton loaders
+- Handle API failures gracefully
+- Type-safe error messages
+- Loading state indicators
+
+## Social Media Integration
+
+- Twitter API integration
+- Proper API key management
+- Tweet card components
+- Social sharing capabilities
+- Featured tweets fallback
+
+## Package Management
+
+- Use PNPM exclusively
+- React 19 installation:
+  - pnpm install --force
+  - Handle peer dependencies appropriately
+- Shadcn UI setup:
+  - Use CLI with React 19 flags
+  - Follow component installation guidelines
+- Husky pre-commit hooks
+- ESLint with Next.js rules
+- Prettier with tailwind plugin
+
+## Development Workflow
+
+- Follow Next.js documentation for:
+  - Data fetching patterns
+  - Routing conventions
+  - Rendering strategies
+- Optimize for Core Web Vitals (LCP, CLS, FID)
+- Maintain existing configuration files:
+  - eslintrc.json
+  - prettierrc
+  - vscode settings
+- Proper environment variable handling
+
+## Code Quality
+
+- Write concise, self-documenting code
+- Modularize and avoid duplication
+- Use declarative patterns
+- Maintain consistent formatting
+- Implement proper TypeScript types
+- Follow component composition patterns
+
+## Blog System
+
+- Content organization:
+  - Markdown files in src/content/blog/[lang]/
+  - Image assets in public/images/blog/
+- Blog metadata handling with gray-matter
+- Markdown processing with remark
+- Language-specific blog routes
+
+## Form Handling
+
+- React Hook Form for form state
+- Zod for validation
+- Sonner for toast notifications
+- Type-safe form submissions
+
+## Animation Patterns
+
+- Three.js scene cleanup
+- RAF animation handling
+- Theme-aware Three.js materials
+- Proper disposal of geometries and materials
+
+## Contact System
+
+- FAQ accordion with first item open by default
+- Form validation with company field optional
+- Resend email integration
+- Type-safe contact form dictionary
